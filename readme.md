@@ -1,3 +1,4 @@
+```python
 -------------------------------------------------------------------------
   |--- VISTAS
         |
@@ -21,6 +22,7 @@
                 |- MAILING CON PROMOCIONES A CLIENTES
 
 ---------------------------------------------------------------------------
+```
 
 ## DIA 1:
   - Creación del projecto [smartstorage] y el repositorio.
@@ -30,3 +32,7 @@
   - Estructura stockmanager.views creada. Clases definidas.
   - Urlpatterns definido.
 
+## DIA 2:
+  - Modelos base de datos creados. [Falta uno para relacionar proveedores y productos]
+  - Modelos añadidos a administración. 
+  - Estructura static y templates.
