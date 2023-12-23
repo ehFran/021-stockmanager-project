@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>PROVEEDORES</h1>
+
+<section class="section-cards">
+    {% for supplier in suppliers %}
+
+    <div class="card w-96 bg-base-100 shadow-xl">
+     <figure><img src="{{supplier.Imagen}}" alt=""  /></figure>
+     <div class="card-body">
+       <h2 class="card-title">{{supplier.Nombre}}</h2>
+       <p>{{supplier.Contacto}}</p>
+       <div class="card-actions justify-end">
+         <button class="btn btn-primary">Modificar</button>
+       </div>
+     </div>
+    </div>
+ 
+    {% endfor %}
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load static %}
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    {% tailwind_css %}
+</head>
+<body>
+    
+    <nav class="navbar bg-base-100">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+              <li><a href="{% url 'products_index' %}">Productos</a></li>
+              <li><a href="{% url 'suppliers_index' %}">Proveedores</a></li>
+              <li><a href="{% url 'clients_index' %}">Clientes</a></li>
+              <li><a href="{% url 'purchases_index' %}">Compras</a></li>
+              <li><a href="{% url 'sales_index' %}">Ventas</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="navbar-center">
+          <a class="btn btn-ghost text-xl" href="{% url 'stockmanager_index' %}">STOCK MANAGER</a>
+        </div>
+        <div class="navbar-end">
+        </div>
+      </nav>
+
+    <main>
+      {% block  content %}
+      {% endblock %}
+    </main>
+
+</body>
+</html>

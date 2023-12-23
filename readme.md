@@ -36,3 +36,8 @@
   - Modelos base de datos creados. [Falta uno para relacionar proveedores y productos]
   - Modelos añadidos a administración. 
   - Estructura static y templates.
+
+## DIA 3:
+  - Instalación tailwind. Creación theme. [run server tailwind => python manage.py tailwind start]
+  - DaisyUI instalado y añadido a tailwind config.
+  - NavBar e indexado de Productos, Proveedores, Clientes, Compras y Ventas

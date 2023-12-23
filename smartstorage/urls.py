@@ -5,5 +5,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #URLS PROPIAS
-    path('stockmanager/', include('stockmanager.urls'))
+    path('stockmanager/', include('stockmanager.urls')),
+
+    #TAILWIND
+    path("__reload__/", include("django_browser_reload.urls")),
 ]

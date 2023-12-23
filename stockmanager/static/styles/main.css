@@ -1,0 +1,17 @@
+body{
+    background-color: white;
+}
+
+main{
+    width: 80vw;
+    margin: auto;
+    padding: 25px;
+}
+
+.section-cards{
+    display: flex;
+}
+
+.card{
+    margin: 20px;
+}
