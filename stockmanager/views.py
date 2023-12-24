@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from stockmanager.models import Productos, Proveedores, Clientes, Compras, Ventas
+from .forms import new_product, new_supplier, new_client
 
 ###########################################################################################
 ################################### RUTAS STOCKMANAGE #####################################
@@ -21,7 +22,21 @@ def products_index(response):
     return render(response, 'productos/index.html', {'products': products})
 
 def product_new(response):
-    return HttpResponse('<h1>PRODUCTOS_NEW</h1>')
+
+    if response.method == 'GET':
+        return render(response, 'productos/new.html', {
+            'form': new_product()
+        })
+    else:
+        Productos.objects.create(
+            Nombre = response.POST['nombre'],
+            Descripcion = response.POST['descripcion'],
+            Precio = response.POST['precio'],
+            Stock = response.POST['stock'],
+            Imagen = response.POST['imagen']
+            )
+        return redirect('products_index')
+    
 
 def product_get(response, id):
     return HttpResponse('<h1>PRODUCTOS_GET</h1>')
@@ -37,7 +52,20 @@ def suppliers_index(response):
     return render(response, 'proveedores/index.html', {'suppliers':suppliers})
 
 def supplier_new(response):
-    return HttpResponse('<h1>PROVEEDORES_NEW</h1>')
+     
+    if response.method == 'GET':
+        return render(response, 'proveedores/new.html', {
+            'form': new_supplier()
+        })
+    else:
+        Proveedores.objects.create(
+            Nombre = response.POST['nombre'],
+            Contacto = response.POST['contacto'],
+            CorreoElectronico = response.POST['correoelectronico'],
+            Telefono = response.POST['telefono'],
+            Imagen = response.POST['imagen']
+            )
+        return redirect('suppliers_index')
 
 def supplier_get(response, id):
     return HttpResponse('<h1>PROVEEDORES_GET</h1>')
@@ -53,7 +81,21 @@ def clients_index(response):
     return render(response, 'clientes/index.html', {'clients':clients})
 
 def client_new(response):
-    return HttpResponse('<h1>CLIENTES_NEW</h1>')
+     
+    if response.method == 'GET':
+        return render(response, 'clientes/new.html', {
+            'form': new_client()
+        })
+    else:
+        Clientes.objects.create(
+            Nombre = response.POST['nombre'],
+            Apellido = response.POST['apellido'],
+            CorreoElectronico = response.POST['correoelectronico'],
+            Direccion = response.POST['direccion'],
+            Imagen = response.POST['imagen']
+            )
+        return redirect('clients_index')
+
 
 def client_get(response, id):
     return HttpResponse('<h1>CLIENTES_GET</h1>')

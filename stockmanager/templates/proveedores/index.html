@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>PROVEEDORES</h1>
+<h1>PROVEEDORES</h1>  <a href="{% url 'supplier_new' %}"><button class="btn btn-primary"> + PROVEEDOR </button></a>
 
 <section class="section-cards">
     {% for supplier in suppliers %}

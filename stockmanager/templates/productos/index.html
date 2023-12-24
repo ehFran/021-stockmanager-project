@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>PRODUCTOS</h1>
+<h1>PRODUCTOS</h1> <a href="{% url 'product_new' %}"><button class="btn btn-primary"> + PRODUCTO </button></a>
 
 <section class="section-cards">
     {% for product in products %}

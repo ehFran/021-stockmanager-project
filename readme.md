@@ -41,3 +41,7 @@
   - Instalación tailwind. Creación theme. [run server tailwind => python manage.py tailwind start]
   - DaisyUI instalado y añadido a tailwind config.
   - NavBar e indexado de Productos, Proveedores, Clientes, Compras y Ventas
+
+## DIA 4:
+  - Creados primeros formularios (New: Productos, Proveedores y Clientes). 
+  - Funciones new_product, new_supplier, new_client
