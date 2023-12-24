@@ -45,3 +45,4 @@
 ## DIA 4:
   - Creados primeros formularios (New: Productos, Proveedores y Clientes). 
   - Funciones new_product, new_supplier, new_client
+  - Sistema de gestión de imagenes create para productos, proveedores y clientes. Instalación pillow. Modelos modificados y migrados.

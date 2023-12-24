@@ -6,7 +6,7 @@ from django.db import models
 
 class Productos(models.Model):
     ProductoID = models.AutoField(primary_key=True)
-    Imagen = models.CharField(max_length=255)
+    Imagen = models.ImageField(null=True, blank=True, upload_to="images/")
     Nombre = models.CharField(max_length=255)
     Descripcion = models.TextField()
     Precio = models.DecimalField(max_digits=10, decimal_places=2)
@@ -22,7 +22,7 @@ class Productos(models.Model):
     
 class Clientes(models.Model):
     ClienteID = models.AutoField(primary_key=True)
-    Imagen = models.CharField(max_length=255)
+    Imagen = models.ImageField(null=True, blank=True, upload_to="images/")
     Nombre = models.CharField(max_length=255)
     Apellido = models.CharField(max_length=255)
     CorreoElectronico = models.CharField(max_length=255)
@@ -64,7 +64,7 @@ class DetallesVentas(models.Model):
     
 class Proveedores(models.Model):
     ProveedorID = models.AutoField(primary_key=True)
-    Imagen = models.CharField(max_length=255)
+    Imagen = models.ImageField(null=True, blank=True, upload_to="images/")
     Nombre = models.CharField(max_length=255)
     Contacto = models.CharField(max_length=255)
     CorreoElectronico = models.CharField(max_length=255)

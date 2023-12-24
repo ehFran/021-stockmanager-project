@@ -33,7 +33,7 @@ def product_new(response):
             Descripcion = response.POST['descripcion'],
             Precio = response.POST['precio'],
             Stock = response.POST['stock'],
-            Imagen = response.POST['imagen']
+            Imagen = response.FILES['imagen']
             )
         return redirect('products_index')
     
@@ -63,7 +63,7 @@ def supplier_new(response):
             Contacto = response.POST['contacto'],
             CorreoElectronico = response.POST['correoelectronico'],
             Telefono = response.POST['telefono'],
-            Imagen = response.POST['imagen']
+            Imagen = response.FILES['imagen']
             )
         return redirect('suppliers_index')
 
@@ -92,7 +92,7 @@ def client_new(response):
             Apellido = response.POST['apellido'],
             CorreoElectronico = response.POST['correoelectronico'],
             Direccion = response.POST['direccion'],
-            Imagen = response.POST['imagen']
+            Imagen = response.FILES['imagen']
             )
         return redirect('clients_index')
 

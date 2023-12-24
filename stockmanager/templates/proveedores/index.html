@@ -10,7 +10,7 @@
     {% for supplier in suppliers %}
 
     <div class="card w-96 bg-base-100 shadow-xl">
-     <figure><img src="{{supplier.Imagen}}" alt=""  /></figure>
+     <figure><img src="{{supplier.Imagen.url}}" alt=""  /></figure>
      <div class="card-body">
        <h2 class="card-title">{{supplier.Nombre}}</h2>
        <p>{{supplier.Contacto}}</p>

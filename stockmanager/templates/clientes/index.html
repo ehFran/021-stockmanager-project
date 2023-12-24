@@ -10,7 +10,7 @@
     {% for client in clients %}
 
     <div class="card w-96 bg-base-100 shadow-xl">
-     <figure><img src="{{client.Imagen}}" alt=""  /></figure>
+     <figure><img src="{{client.Imagen.url}}" alt=""  /></figure>
      <div class="card-body">
        <h2 class="card-title">{{client.Nombre}}</h2>
        <p>{{client.Contacto}}</p>
