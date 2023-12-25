@@ -15,7 +15,7 @@
        <h2 class="card-title">{{product.Nombre}}</h2>
        <p>{{product.Descripcion}}</p>
        <div class="card-actions justify-end">
-         <button class="btn btn-primary">Modificar</button>
+        <a href="{% url 'product_get' product.ProductoID %}"><button class="btn btn-primary">Modificar</button></a>
        </div>
      </div>
     </div>

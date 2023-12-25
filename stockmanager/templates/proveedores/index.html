@@ -15,7 +15,7 @@
        <h2 class="card-title">{{supplier.Nombre}}</h2>
        <p>{{supplier.Contacto}}</p>
        <div class="card-actions justify-end">
-         <button class="btn btn-primary">Modificar</button>
+          <a href="{% url 'supplier_get' supplier.ProveedorID %}"><button class="btn btn-primary">Modificar</button></a>
        </div>
      </div>
     </div>

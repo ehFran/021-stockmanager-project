@@ -15,7 +15,7 @@
        <h2 class="card-title">{{client.Nombre}}</h2>
        <p>{{client.Contacto}}</p>
        <div class="card-actions justify-end">
-         <button class="btn btn-primary">Modificar</button>
+         <a href="{% url 'client_get' client.ClienteID %}"><button class="btn btn-primary">Modificar</button></a>
        </div>
      </div>
     </div>

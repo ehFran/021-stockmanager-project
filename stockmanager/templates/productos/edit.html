@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1> Editar Producto - {{product.Nombre}}</h1> 
+
+<form method="POST" action="" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{form}}
+
+<button>Actualizar</button>
+
+</form>
+
+{% endblock %}

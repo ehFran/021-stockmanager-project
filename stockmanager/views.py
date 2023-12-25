@@ -38,8 +38,21 @@ def product_new(response):
         return redirect('products_index')
     
 
-def product_get(response, id):
-    return HttpResponse('<h1>PRODUCTOS_GET</h1>')
+def product_get(response, ProductoID):
+
+    product = get_object_or_404(Productos, pk=ProductoID)
+    
+    if response.method == 'GET':
+        form = new_product(instance=product)
+
+        return render(response, 'productos/edit.html', {
+            'product': product,
+            'form': form
+        })
+    else:
+        form = new_product(response.POST, response.FILES, instance=product)
+        form.save()
+        return redirect('products_index')
 
 ###########################################################################################
 #################################### RUTAS PROVEEDORES ####################################
@@ -67,8 +80,22 @@ def supplier_new(response):
             )
         return redirect('suppliers_index')
 
-def supplier_get(response, id):
-    return HttpResponse('<h1>PROVEEDORES_GET</h1>')
+def supplier_get(response, ProveedorID):
+
+    supplier = get_object_or_404(Proveedores, pk=ProveedorID)
+    
+    if response.method == 'GET':
+        form = new_supplier(instance=supplier)
+
+        return render(response, 'proveedores/edit.html', {
+            'supplier': supplier,
+            'form': form
+        })
+    else:
+        form = new_supplier(response.POST, response.FILES, instance=supplier)
+        form.save()
+        return redirect('suppliers_index')
+
 
 ###########################################################################################
 ##################################### RUTAS CLIENTES ######################################
@@ -97,8 +124,21 @@ def client_new(response):
         return redirect('clients_index')
 
 
-def client_get(response, id):
-    return HttpResponse('<h1>CLIENTES_GET</h1>')
+def client_get(response, ClienteID):
+
+    client = get_object_or_404(Clientes, pk=ClienteID)
+    
+    if response.method == 'GET':
+        form = new_client(instance=client)
+
+        return render(response, 'clientes/edit.html', {
+            'client': client,
+            'form': form
+        })
+    else:
+        form = new_client(response.POST, response.FILES, instance=client)
+        form.save()
+        return redirect('clients_index')
 
 ###########################################################################################
 ###################################### RUTAS COMPRAS ######################################

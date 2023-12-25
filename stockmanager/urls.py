@@ -9,17 +9,17 @@ urlpatterns = [
     #PRODUCTOS = PRODUCTS
     path('productos/', views.products_index, name='products_index'),
     path('producto_nuevo/', views.product_new, name='product_new'),
-    path('producto/<int:id>', views.product_get, name='product_get'),
+    path('producto/<int:ProductoID>', views.product_get, name='product_get'),
      
     #PROVEEDORES = SUPPLIERS
     path('proveedores/', views.suppliers_index, name='suppliers_index'),
     path('proveedor_nuevo/', views.supplier_new, name='supplier_new'),
-    path('proveedor/<int:id>', views.supplier_get, name='supplier_get'),
+    path('proveedor/<int:ProveedorID>', views.supplier_get, name='supplier_get'),
      
     #CLIENTES = CLIENTS
     path('clientes/', views.clients_index, name='clients_index'),
     path('cliente_nuevo/', views.client_new, name='client_new'),
-    path('cliente/<int:id>', views.client_get, name='client_get'),
+    path('cliente/<int:ClienteID>', views.client_get, name='client_get'),
      
     #COMPRAS = PURCHASES
     path('compras/', views.purchases_index, name='purchases_index'),

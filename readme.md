@@ -25,24 +25,28 @@
 ```
 
 ## DIA 1:
-  - Creación del projecto [smartstorage] y el repositorio.
-  - Creación apps [stockmanager] Añadidas a INSTALLED_APPS.
+  - Creación del projecto [smartstorage] y el repositorio
+  - Creación apps [stockmanager] Añadidas a INSTALLED_APPS
   - Migraciones realizadas y super user creado [name: fran, pw:fran]
   - Creación de ruta maestra [stockmanager] y urls.py 
-  - Estructura stockmanager.views creada. Clases definidas.
-  - Urlpatterns definido.
+  - Estructura stockmanager.views creada. Clases definidas
+  - Urlpatterns definido
 
 ## DIA 2:
   - Modelos base de datos creados. [Falta uno para relacionar proveedores y productos]
-  - Modelos añadidos a administración. 
-  - Estructura static y templates.
+  - Modelos añadidos a administración
+  - Estructura static y templates
 
 ## DIA 3:
   - Instalación tailwind. Creación theme. [run server tailwind => python manage.py tailwind start]
-  - DaisyUI instalado y añadido a tailwind config.
+  - DaisyUI instalado y añadido a tailwind config
   - NavBar e indexado de Productos, Proveedores, Clientes, Compras y Ventas
 
 ## DIA 4:
-  - Creados primeros formularios (New: Productos, Proveedores y Clientes). 
+  - Creados primeros formularios (New: Productos, Proveedores y Clientes)
   - Funciones new_product, new_supplier, new_client
-  - Sistema de gestión de imagenes create para productos, proveedores y clientes. Instalación pillow. Modelos modificados y migrados.
+  - Sistema de gestión de imagenes create para productos, proveedores y clientes. Instalación pillow. Modelos modificados y migrados
+
+## DIA 5:
+  - Funciones y vistas de edición (edit.html) productos, proveedores y clientes
+  
