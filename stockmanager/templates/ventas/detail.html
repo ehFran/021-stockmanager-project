@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>Ventas</h1>
+<h1>COMPRAS</h1>
 
 <section class="section-cards">
     <div class="overflow-x-auto">
@@ -14,18 +14,25 @@
             <tr>
               <th></th>
               <th>Fecha</th>
-              <th>Proveedor</th>
+              <th>Cliente</th>
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
-            {% for sale in sales %}
             <tr>
-              <th>{{sale.VentaID}}</th>
+              <th>0000{{sale.VentaID}}</th>
               <td>{{sale.FechaVenta}}</td>
               <td>{{sale.ClienteID.Nombre}}</td>
               <td>{{sale.Total}}</td>
-              <td><a href="{% url 'sale_get' sale.VentaID %}">Ver más</a></td>
+            </tr>
+          </tbody>
+          <tbody>
+            {% for sd in sale_details %}
+            <tr>
+              <th>{{sd.VentaID.VentaID}}</th>
+              <td>{{sd.ProductoID.ProductoID}}</td>
+              <td>{{sd.ProductoID.Nombre}}</td>
+              <td>{{sd.ProductoID.Precio}}</td>
             </tr>
             {% endfor %}
           </tbody>

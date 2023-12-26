@@ -24,10 +24,10 @@ urlpatterns = [
     #COMPRAS = PURCHASES
     path('compras/', views.purchases_index, name='purchases_index'),
     path('compra_nueva/', views.purchase_new, name='purchase_new'),
-    path('compra/<int:id>', views.purchase_get, name='purchase_get'),
+    path('compra/<int:CompraID>', views.purchase_get, name='purchase_get'),
      
     #VENTAS = SALES
     path('ventas/', views.sales_index, name='sales_index'),
     path('venta_nueva/', views.sale_new, name='sale_new'),
-    path('venta/<int:id>', views.sale_get, name='sale_get'),
+    path('venta/<int:VentaID>', views.sale_get, name='sale_get'),
 ]

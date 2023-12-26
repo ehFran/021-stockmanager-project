@@ -16,22 +16,18 @@
               <th>Fecha</th>
               <th>Proveedor</th>
               <th>Total</th>
-              <th>Detalles</th>
             </tr>
           </thead>
           <tbody>
-            {% for purchase in purchases %}
             <tr>
               <th>0000{{purchase.CompraID}}</th>
               <td>{{purchase.FechaCompra}}</td>
               <td>{{purchase.ProveedorID.Nombre}}</td>
               <td>{{purchase.Total}}</td>
-              <td><a href="{% url 'purchase_get' purchase.CompraID %}">Ver más</a></td>
             </tr>
-            {% endfor %}
           </tbody>
-          <!-- <tbody>
-            {% for pd in purchases_details %}
+          <tbody>
+            {% for pd in purchase_details %}
             <tr>
               <th>{{pd.CompraID.CompraID}}</th>
               <td>{{pd.ProductoID.ProductoID}}</td>
@@ -39,7 +35,7 @@
               <td>{{pd.ProductoID.Precio}}</td>
             </tr>
             {% endfor %}
-          </tbody> -->
+          </tbody>
         </table>
       </div>
 

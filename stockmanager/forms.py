@@ -1,5 +1,5 @@
 from django import forms
-from .models import Productos, Proveedores, Clientes
+from .models import Productos, Proveedores, Clientes, Compras, Ventas, DetallesCompras, DetallesVentas
 
 #############################
 ###### FORMS PRODUCTOS ######
@@ -42,7 +42,7 @@ class new_supplier(forms.ModelForm):
 class new_client(forms.ModelForm):
 
     class Meta:
-        model = Productos
+        model = Clientes
         fields = ['Nombre', 'Apellido', 'Direccion', 'CorreoElectronico', 'Imagen']
 
     Nombre = forms.CharField(label='Nombre:', max_length=200)
@@ -52,18 +52,38 @@ class new_client(forms.ModelForm):
     Imagen = forms.ImageField(required=False)
     
     
-###########################
-###### FORMS COMPRAS ######
-###########################
+#########################################
+###### FORMS COMPRAS - PROVEEDORES ######
+#########################################
 
-class new_purchase(forms.Form):
+class new_purchase(forms.ModelForm):
+
+    class Meta:
+        model = Compras
+        fields = ['FechaCompra', 'ProveedorID']
 
     #Fetch Proveedores
     proveedores = Proveedores.objects.all()
     opciones_proveedores = [(proveedor.ProveedorID, proveedor.Nombre) for proveedor in proveedores]
 
-    fechacompra = forms.DateTimeField()
-    proveedor = forms.ChoiceField(choices=opciones_proveedores, widget=forms.Select(attrs={'class': 'form-control'}))
+    FechaCompra = forms.DateTimeField()
+    ProveedorID = forms.ChoiceField(choices=opciones_proveedores, widget=forms.Select(attrs={'class': 'form-control'}))
+
+#########################################
+###### FORMS COMPRAS - PRODUCTOS ########
+#########################################
+
+class add_product_purchase(forms.ModelForm):
+
+    class Meta:
+        model = DetallesCompras
+        fields = ['Cantidad', 'ProductoID_id']
+
+    productos = Productos.objects.all()
+    opciones_productos = [(producto.ProductoID, producto.Nombre) for producto in productos]
+
+    Cantidad = forms.IntegerField(label='Cantidad')
+    ProductoID_id = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-control'}))
 
 
 

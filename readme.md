@@ -49,4 +49,7 @@
 
 ## DIA 5:
   - Funciones y vistas de edición (edit.html) productos, proveedores y clientes
-  
+  - Sistema de visionado de Compras: index y details
+
+## DIA 6:
+  - Sistema de visionado de Ventas: index y details
