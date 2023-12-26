@@ -26,11 +26,19 @@
               <td>{{purchase.Total}}</td>
             </tr>
           </tbody>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Cantidad</th>
+              <th>Producto</th>
+              <th>Precio Unitario</th>
+            </tr>
+          </thead>
           <tbody>
             {% for pd in purchase_details %}
             <tr>
-              <th>{{pd.CompraID.CompraID}}</th>
-              <td>{{pd.ProductoID.ProductoID}}</td>
+              <th>0000{{pd.CompraID.CompraID}}</th>
+              <td>{{pd.Cantidad}}</td>
               <td>{{pd.ProductoID.Nombre}}</td>
               <td>{{pd.ProductoID.Precio}}</td>
             </tr>
@@ -41,5 +49,16 @@
 
 </section>
 
+<section>
+  <h1> Nueva Compra </h1>
+
+  <form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{form}}
+
+    <button>Crear</button>
+  </form>
+</section>
 
 {% endblock %}

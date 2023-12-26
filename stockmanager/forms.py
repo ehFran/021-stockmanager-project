@@ -77,13 +77,13 @@ class add_product_purchase(forms.ModelForm):
 
     class Meta:
         model = DetallesCompras
-        fields = ['Cantidad', 'ProductoID_id']
+        fields = ['Cantidad', 'ProductoID']
 
     productos = Productos.objects.all()
     opciones_productos = [(producto.ProductoID, producto.Nombre) for producto in productos]
 
     Cantidad = forms.IntegerField(label='Cantidad')
-    ProductoID_id = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-control'}))
+    ProductoID = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-control'}))
 
 
 
@@ -91,3 +91,32 @@ class add_product_purchase(forms.ModelForm):
 ###### FORMS VENTAS ######
 ##########################
 
+class new_sale(forms.ModelForm):
+
+    class Meta:
+        model = Ventas
+        fields = ['FechaVenta', 'ClienteID']
+
+    #Fetch Clientes
+    clientes = Clientes.objects.all()
+    opciones_clientes= [(cliente.ClienteID, cliente.Nombre) for cliente in clientes]
+
+    FechaVenta = forms.DateTimeField()
+    ClienteID = forms.ChoiceField(choices=opciones_clientes, widget=forms.Select(attrs={'class': 'form-control'})) 
+
+
+#########################################
+###### FORMS COMPRAS - PRODUCTOS ########
+#########################################
+
+class add_product_sale(forms.ModelForm):
+
+    class Meta:
+        model = DetallesVentas
+        fields = ['Cantidad', 'ProductoID']
+
+    productos = Productos.objects.all()
+    opciones_productos = [(producto.ProductoID, producto.Nombre) for producto in productos]
+
+    Cantidad = forms.IntegerField(label='Cantidad')
+    ProductoID = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-control'}))

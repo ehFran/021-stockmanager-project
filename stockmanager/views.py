@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from stockmanager.models import Productos, Proveedores, Clientes, Compras, DetallesCompras, Ventas, DetallesVentas
-from .forms import new_product, new_supplier, new_client
+from .forms import new_product, new_supplier, new_client, new_purchase, add_product_purchase, new_sale, add_product_sale
 
 ###########################################################################################
 ################################### RUTAS STOCKMANAGE #####################################
@@ -31,11 +31,11 @@ def product_new(response):
         })
     else:
         Productos.objects.create(
-            Nombre = response.POST['nombre'],
-            Descripcion = response.POST['descripcion'],
-            Precio = response.POST['precio'],
-            Stock = response.POST['stock'],
-            Imagen = response.FILES['imagen']
+            Nombre = response.POST['Nombre'],
+            Descripcion = response.POST['Descripcion'],
+            Precio = response.POST['Precio'],
+            Stock = response.POST['Stock'],
+            Imagen = response.FILES['Imagen']
             )
         return redirect('products_index')
     
@@ -76,11 +76,11 @@ def supplier_new(response):
         })
     else:
         Proveedores.objects.create(
-            Nombre = response.POST['nombre'],
-            Contacto = response.POST['contacto'],
-            CorreoElectronico = response.POST['correoelectronico'],
-            Telefono = response.POST['telefono'],
-            Imagen = response.FILES['imagen']
+            Nombre = response.POST['Nombre'],
+            Contacto = response.POST['Contacto'],
+            CorreoElectronico = response.POST['CorreoElectronico'],
+            Telefono = response.POST['Telefono'],
+            Imagen = response.FILES['Imagen']
             )
         return redirect('suppliers_index')
 
@@ -123,11 +123,11 @@ def client_new(response):
         })
     else:
         Clientes.objects.create(
-            Nombre = response.POST['nombre'],
-            Apellido = response.POST['apellido'],
-            CorreoElectronico = response.POST['correoelectronico'],
-            Direccion = response.POST['direccion'],
-            Imagen = response.FILES['imagen']
+            Nombre = response.POST['Nombre'],
+            Apellido = response.POST['Apellido'],
+            CorreoElectronico = response.POST['CorreoElectronico'],
+            Direccion = response.POST['Direccion'],
+            Imagen = response.FILES['Imagen']
             )
         return redirect('clients_index')
 
@@ -163,7 +163,25 @@ def purchases_index(response):
 
 ''' CREAR UNA NUEVA COMPRA A PROVEEDOR '''
 def purchase_new(response):
-    return HttpResponse('<h1>COMPRAS_NEW</h1>')
+     
+    if response.method == 'GET':
+        return render(response, 'compras/new.html', {
+            'form': new_purchase()
+        })
+    else:
+         # Obtén la instancia del proveedor usando el ID del formulario
+        proveedor_id = response.POST['ProveedorID']
+        proveedor = Proveedores.objects.get(ProveedorID=proveedor_id)
+
+        # Crea la nueva compra utilizando la instancia del proveedor
+        Compras.objects.create(
+            FechaCompra=response.POST['FechaCompra'],
+            ProveedorID=proveedor,
+            Total=0,
+            )
+        
+        return redirect('purchases_index')
+
 
 ''' EDITAR UNA COMPRA CONCRETA A PROVEEDOR '''
 def purchase_edit(response):
@@ -175,10 +193,28 @@ def purchase_get(response, CompraID):
     purchase = Compras.objects.get(pk=CompraID)
     purchase_details = DetallesCompras.objects.filter(CompraID=CompraID)
 
-    return render(response, 'compras/detail.html', {
-        'purchase': purchase,
-        'purchase_details': purchase_details,
-    })
+    if response.method == 'GET':
+        return render(response, 'compras/detail.html', {
+            'form': add_product_purchase(),
+            'purchase': purchase,
+            'purchase_details': purchase_details,
+        })
+    else:
+        # Obtén la instancia del producto usando el ID del formulario
+        producto_id = response.POST['ProductoID']
+        producto = Productos.objects.get(ProductoID=producto_id)
+
+        # Crea nuevo detalle utilizando la instancia de compra y producto
+        DetallesCompras.objects.create(
+            Cantidad=response.POST['Cantidad'],
+            CompraID=purchase,
+            ProductoID=producto,
+            PrecioUnitario=producto.Precio
+            )
+        purchase.Total = float(purchase.Total) + (float(producto.Precio) * int(response.POST['Cantidad']))
+        purchase.save()
+        
+        return redirect('purchase_get', CompraID)
 
 ###########################################################################################
 ###################################### RUTAS VENTAS #######################################
@@ -194,7 +230,22 @@ def sales_index(response):
 
 ''' CREAR NUEVA VENTA '''
 def sale_new(response):
-    return HttpResponse('<h1>VENTAS_NEW</h1>')
+
+    if response.method == 'GET':
+        return render(response, 'ventas/new.html', {
+            'form': new_sale()
+        })
+    else:
+        cliente_id = response.POST['ClienteID']
+        cliente = Clientes.objects.get(ClienteID=cliente_id)
+
+        Ventas.objects.create(
+            FechaVenta=response.POST['FechaVenta'],
+            ClienteID=cliente,
+            Total=0
+        )
+
+        return redirect('sales_index')
 
 
 ''' EDITAR UNA VENTA CONCRETA A UN CLIENTE  '''
@@ -207,7 +258,26 @@ def sale_get(response, VentaID):
     sale = Ventas.objects.get(pk=VentaID)
     sale_details = DetallesVentas.objects.filter(VentaID=VentaID)
 
-    return render(response, 'ventas/detail.html', {
-        'sale': sale,
-        'sale_details': sale_details,
-    })
+    if response.method == 'GET':
+        return render(response, 'ventas/detail.html', {
+            'form': add_product_sale(),
+            'sale': sale,
+            'sale_details': sale_details,
+        })
+    else:
+        # Obtén la instancia del producto usando el ID del formulario
+        producto_id = response.POST['ProductoID']
+        producto = Productos.objects.get(ProductoID=producto_id)
+
+        # Crea nuevo detalle utilizando la instancia de venta y producto
+        DetallesVentas.objects.create(
+            Cantidad=response.POST['Cantidad'],
+            VentaID=sale,
+            ProductoID=producto,
+            PrecioUnitario=producto.Precio
+            )
+        
+        sale.Total = float(sale.Total) + (float(producto.Precio) * int(response.POST['Cantidad']))
+        sale.save()
+        
+        return redirect('sale_get', VentaID)

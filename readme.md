@@ -52,4 +52,6 @@
   - Sistema de visionado de Compras: index y details
 
 ## DIA 6:
-  - Sistema de visionado de Ventas: index y details
+  - Sistema de visionado de Ventas: index y details.
+  - Creación de compras y detalles compras. Actualización total funcionando
+  - Creación de ventas y detalles de ventas. Actualización de total funcionando
