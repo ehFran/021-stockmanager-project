@@ -2,15 +2,17 @@
 
 {% block content %}
 
-<h1> Nuevo Producto </h1> 
+<section class="form-section">
+    
+    <form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
 
-<form method="POST" action="" enctype="multipart/form-data">
-{% csrf_token %}
+    {{form}}
 
-{{form}}
+    <button>Crear</button>
 
-<button>Crear</button>
+    </form>
 
-</form>
+</section>
 
 {% endblock %}

@@ -1,17 +1,130 @@
+/* ESTILOS GENERALES */
+
 body{
     background-color: white;
 }
 
 main{
-    width: 80vw;
     margin: auto;
-    padding: 25px;
+}
+
+/* ESTILOS CARDS */
+
+.sub-header{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .section-cards{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card{
     margin: 20px;
+    width: 300px !important;
 }
+
+
+/* ESTILOS DE FORMULARIOS */
+
+.form-section{
+    width: 80vw;
+    margin: auto;
+}
+
+form input{
+    margin: 10px;
+    display: block;
+}
+
+.descripcion-form{
+    margin: 10px;
+    display: block;
+}
+
+
+/* ESTILOS SECCION TABLAS Y FORMS*/
+
+.section-table{
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.form-title{
+    width: 60vw;
+    margin: auto;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 2px gray;
+}
+
+.form-section-detail{
+    width: 60vw;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-section-detail form{
+    display: flex;
+}
+
+.form-product{
+    display: block;
+    margin: 10px;
+}
+
+.btn-crear{
+    margin: auto;
+    margin-left: 50px;
+}
+
+/* ESTILOS INDEX LANDING */
+
+/* HERO */
+.title{
+    font-size: 3.8rem !important;
+    font-weight: 900;
+    color: white;
+}
+
+.sub-title{
+    color: white;
+}
+
+.btn-title{
+    border: solid 2px #EF47BC !important;
+    font-size: 1rem !important;
+}
+
+
+/* ENTERPRISES */
+.enterprises-section{
+    padding: 50px;
+}
+
+.enterprises-section h1{ 
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.enterprises-imgs{
+    display: flex;
+    margin: auto;
+}
+
+.enterprises-imgs img {
+    margin: auto;
+}
+
+
+/* PRICING */
+.pricing-section{
+    margin-bottom: 50px;
+}
+
+
+/* SHOW */

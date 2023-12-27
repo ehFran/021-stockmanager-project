@@ -4,9 +4,13 @@
 
 {% block content %}
 
-<h1>COMPRAS</h1> <button class="btn btn-primary"><a href="{% url 'purchase_new' %}">Nueva Compra</a></button>
 
-<section class="section-cards">
+<section class="sub-header">
+  <h1>COMPRAS</h1>   
+  <a href="{% url 'purchase_new' %}"><button class="btn btn-primary">Nueva Compra</button></a>
+</section>
+
+<section class="section-table">
     <div class="overflow-x-auto">
         <table class="table">
           <!-- head -->

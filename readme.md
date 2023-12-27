@@ -55,3 +55,11 @@
   - Sistema de visionado de Ventas: index y details.
   - Creación de compras y detalles compras. Actualización total funcionando
   - Creación de ventas y detalles de ventas. Actualización de total funcionando
+
+## DIA 7:
+  - Estilado básico
+
+  ROUTEMAP:
+    - Estilos
+    - Gestion de stock al hacer compras y ventas.
+  

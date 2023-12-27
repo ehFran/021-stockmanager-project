@@ -12,7 +12,7 @@ class new_product(forms.ModelForm):
         fields = ['Nombre', 'Descripcion', 'Precio', 'Stock', 'Imagen']
 
     Nombre = forms.CharField(label='Nombre del producto:', max_length=200)
-    Descripcion = forms.CharField(widget=forms.Textarea, label="Descripción del producto:", required=False)
+    Descripcion = forms.CharField(widget=forms.Textarea(attrs={'class': 'descripcion-form'}), label="Descripción del producto:", required=False)
     Precio = forms.IntegerField(label='Precio:')
     Stock = forms.IntegerField(label='Stock:')
     Imagen = forms.ImageField(required=False)
@@ -82,9 +82,8 @@ class add_product_purchase(forms.ModelForm):
     productos = Productos.objects.all()
     opciones_productos = [(producto.ProductoID, producto.Nombre) for producto in productos]
 
+    ProductoID = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-product'}))
     Cantidad = forms.IntegerField(label='Cantidad')
-    ProductoID = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-control'}))
-
 
 
 ##########################
@@ -118,5 +117,5 @@ class add_product_sale(forms.ModelForm):
     productos = Productos.objects.all()
     opciones_productos = [(producto.ProductoID, producto.Nombre) for producto in productos]
 
+    ProductoID = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-product'}))
     Cantidad = forms.IntegerField(label='Cantidad')
-    ProductoID = forms.ChoiceField(choices=opciones_productos, widget=forms.Select(attrs={'class': 'form-control'}))

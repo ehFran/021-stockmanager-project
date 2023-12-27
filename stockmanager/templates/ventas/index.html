@@ -4,9 +4,12 @@
 
 {% block content %}
 
-<h1>Ventas</h1> <a href="{% url 'sale_new' %}"><button class="btn btn-primary">Nueva Venta</button></a>
+<section class="sub-header">
+  <h1>Ventas</h1>    
+  <a href="{% url 'sale_new' %}"><button class="btn btn-primary">Nueva Venta</button></a>
+</section>
 
-<section class="section-cards">
+<section class="section-table">
     <div class="overflow-x-auto">
         <table class="table">
           <!-- head -->
@@ -21,7 +24,7 @@
           <tbody>
             {% for sale in sales %}
             <tr>
-              <th>{{sale.VentaID}}</th>
+              <th>0000{{sale.VentaID}}</th>
               <td>{{sale.FechaVenta}}</td>
               <td>{{sale.ClienteID.Nombre}}</td>
               <td>{{sale.Total}}</td>

@@ -4,7 +4,10 @@
 
 {% block content %}
 
-<h1>CLIENTES</h1> <a href="{% url 'client_new' %}"><button class="btn btn-primary"> + CLINTE </button></a>
+<section class="sub-header">
+  <h1>CLIENTES</h1>  
+  <a href="{% url 'client_new' %}"><button class="btn btn-primary"> + CLINTE </button></a>
+</section>
 
 <section class="section-cards">
     {% for client in clients %}
