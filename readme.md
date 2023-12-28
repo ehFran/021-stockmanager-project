@@ -58,8 +58,7 @@
 
 ## DIA 7:
   - Estilado básico
+  - Index main
 
-  ROUTEMAP:
-    - Estilos
-    - Gestion de stock al hacer compras y ventas.
+
   
