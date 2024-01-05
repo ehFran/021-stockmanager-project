@@ -55,6 +55,15 @@ def product_get(response, ProductoID):
         form = new_product(response.POST, response.FILES, instance=product)
         form.save()
         return redirect('products_index')
+    
+''' ELIMINAR UN PRODUCTO CONCRETO'''
+def product_delete(response, ProductoID):
+
+    product = get_object_or_404(Productos, pk=ProductoID)
+    
+    if response.method == 'POST':
+        product.delete()
+        return redirect('products_index')
 
 ###########################################################################################
 #################################### RUTAS PROVEEDORES ####################################
@@ -101,6 +110,14 @@ def supplier_get(response, ProveedorID):
         form.save()
         return redirect('suppliers_index')
 
+''' ELIMINAR UN PROVEEDOR CONCRETO'''
+def supplier_delete(response, ProveedorID):
+
+    supplier = get_object_or_404(Proveedores, pk=ProveedorID)
+    
+    if response.method == 'POST':
+        supplier.delete()
+        return redirect('suppliers_index')
 
 ###########################################################################################
 ##################################### RUTAS CLIENTES ######################################
@@ -147,6 +164,15 @@ def client_get(response, ClienteID):
         form = new_client(response.POST, response.FILES, instance=client)
         form.save()
         return redirect('clients_index')
+    
+''' ELIMINAR UN CLIENTE CONCRETO'''
+def client_delete(response, ClienteID):
+
+    client = get_object_or_404(Clientes, pk=ClienteID)
+    
+    if response.method == 'POST':
+        client.delete()
+        return redirect('clients_index')
 
 ###########################################################################################
 ###################################### RUTAS COMPRAS ######################################
@@ -187,7 +213,7 @@ def purchase_new(response):
 def purchase_edit(response):
     pass
 
-''' VER UNA COMPRA CONCRETA EN DETALLE '''
+''' VER Y EDITAR UNA COMPRA CONCRETA EN DETALLE '''
 def purchase_get(response, CompraID):
 
     purchase = Compras.objects.get(pk=CompraID)
@@ -212,9 +238,47 @@ def purchase_get(response, CompraID):
             PrecioUnitario=producto.Precio
             )
         purchase.Total = float(purchase.Total) + (float(producto.Precio) * int(response.POST['Cantidad']))
+        producto.Stock = producto.Stock + int(response.POST['Cantidad'])
+        producto.save()
         purchase.save()
         
         return redirect('purchase_get', CompraID)
+    
+''' ELIMINAR UNA COMPRA CONCRETA'''
+def purchase_delete(response, CompraID):
+
+    purchase = get_object_or_404(Compras, pk=CompraID)
+    
+    if response.method == 'POST':
+
+        detalles_compras = DetallesCompras.objects.filter(CompraID=CompraID)
+
+        # Actualiza el stock de los productos asociados a cada detalle de compra
+        for detalle_compra in detalles_compras:
+            producto = detalle_compra.ProductoID
+            cantidad = detalle_compra.Cantidad
+
+            # Ajusta el stock del producto restando la cantidad de la compra
+            producto.Stock -= cantidad
+            producto.save()
+        
+        purchase.delete()
+        return redirect('purchases_index')
+
+''' ELIMINAR UN REGISTRO DE UNA COMPRA'''
+def purchase_delete_detail(response, CompraID, DetalleCompraID):
+
+    purchase_register = get_object_or_404(DetallesCompras, pk=DetalleCompraID)
+    purchase = get_object_or_404(Compras, pk=CompraID)
+    
+    if response.method == 'POST':
+        purchase.Total = purchase.Total - (purchase_register.Cantidad * purchase_register.PrecioUnitario)
+        producto = get_object_or_404(Productos, pk=purchase_register.ProductoID.ProductoID)
+        producto.Stock -= purchase_register.Cantidad
+        producto.save()
+        purchase.save()
+        purchase_register.delete()
+        return redirect('purchase_get', CompraID=CompraID)
 
 ###########################################################################################
 ###################################### RUTAS VENTAS #######################################
@@ -278,6 +342,44 @@ def sale_get(response, VentaID):
             )
         
         sale.Total = float(sale.Total) + (float(producto.Precio) * int(response.POST['Cantidad']))
+        producto.Stock = producto.Stock - int(response.POST['Cantidad'])
+        producto.save()
         sale.save()
         
         return redirect('sale_get', VentaID)
+
+''' ELIMINAR UNA VENTA'''
+def sale_delete(response, VentaID):
+
+    sale = get_object_or_404(Ventas, pk=VentaID)
+    
+    if response.method == 'POST':
+
+        detalles_ventas = DetallesVentas.objects.filter(VentaID=VentaID)
+
+        # Actualiza el stock de los productos asociados a cada detalle de compra
+        for detalle_venta in detalles_ventas:
+            producto = detalle_venta.ProductoID
+            cantidad = detalle_venta.Cantidad
+
+            # Ajusta el stock del producto restando la cantidad de la compra
+            producto.Stock += cantidad
+            producto.save()
+
+        sale.delete()
+        return redirect('sales_index')
+
+''' ELIMINAR UN REGISTRO DE UNA VENTA'''
+def sale_delete_detail(response, VentaID, DetalleVentaID):
+
+    sale_register = get_object_or_404(DetallesVentas, pk=DetalleVentaID)
+    sale = get_object_or_404(Ventas, pk=VentaID)
+    
+    if response.method == 'POST':
+        sale.Total = sale.Total - (sale_register.Cantidad * sale_register.PrecioUnitario)
+        sale.save()
+        producto = get_object_or_404(Productos, pk=sale_register.ProductoID.ProductoID)
+        producto.Stock += sale_register.Cantidad
+        producto.save()
+        sale_register.delete()
+        return redirect('sale_get', VentaID=VentaID)

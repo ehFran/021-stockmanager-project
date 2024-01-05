@@ -12,10 +12,11 @@
           <!-- head -->
           <thead>
             <tr>
-              <th></th>
+              <th>ID</th>
               <th>Fecha</th>
               <th>Proveedor</th>
               <th>Total</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +42,12 @@
               <td>{{pd.Cantidad}}</td>
               <td>{{pd.ProductoID.Nombre}}</td>
               <td>{{pd.ProductoID.Precio}}</td>
+
+              <td> <form action="{% url 'purchase_delete_detail' CompraID=pd.CompraID.CompraID DetalleCompraID=pd.DetalleCompraID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Eliminar</button>
+              </form></td>
+
             </tr>
             {% endfor %}
           </tbody>

@@ -19,7 +19,13 @@
        <p>{{supplier.Contacto}}</p>
        <div class="card-actions justify-end">
           <a href="{% url 'supplier_get' supplier.ProveedorID %}"><button class="btn btn-primary">Modificar</button></a>
-       </div>
+
+          <form action="{% url 'supplier_delete' supplier.ProveedorID %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary">Eliminar</button>
+          </form>
+          
+        </div>
      </div>
     </div>
  

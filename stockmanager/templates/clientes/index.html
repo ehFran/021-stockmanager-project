@@ -19,7 +19,13 @@
        <p>{{client.Contacto}}</p>
        <div class="card-actions justify-end">
          <a href="{% url 'client_get' client.ClienteID %}"><button class="btn btn-primary">Modificar</button></a>
-       </div>
+       
+        <form action="{% url 'client_delete' client.ClienteID %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-primary">Eliminar</button>
+        </form>
+        
+        </div>
      </div>
     </div>
  

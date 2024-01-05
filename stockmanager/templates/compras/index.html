@@ -21,6 +21,7 @@
               <th>Proveedor</th>
               <th>Total</th>
               <th>Detalles</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +32,12 @@
               <td>{{purchase.ProveedorID.Nombre}}</td>
               <td>{{purchase.Total}}</td>
               <td><a href="{% url 'purchase_get' purchase.CompraID %}">Ver más</a></td>
+
+              <td> <form action="{% url 'purchase_delete' purchase.CompraID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Eliminar</button>
+              </form></td>
+              
             </tr>
             {% endfor %}
           </tbody>

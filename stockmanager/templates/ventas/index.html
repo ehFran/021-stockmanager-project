@@ -29,6 +29,12 @@
               <td>{{sale.ClienteID.Nombre}}</td>
               <td>{{sale.Total}}</td>
               <td><a href="{% url 'sale_get' sale.VentaID %}">Ver más</a></td>
+
+              <td> <form action="{% url 'sale_delete' sale.VentaID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Eliminar</button>
+              </form></td>
+              
             </tr>
             {% endfor %}
           </tbody>

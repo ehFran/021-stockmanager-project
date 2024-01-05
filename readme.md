@@ -60,5 +60,11 @@
   - Estilado básico
   - Index main
 
+## DIA 8:
+  - Eliminar productos, proveedores y clientes.
+  - Eliminar lineas de registros en ventas y compras.
+  - Actualizar el stock de los productos conforme se generen nuevas compras y ventas. O se modifiquen los registros de estas.
+
+
 
   

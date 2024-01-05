@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>COMPRAS</h1>
+<h1>VENTAS</h1>
 
 <section class="section-table">
     <div class="overflow-x-auto">
@@ -32,6 +32,7 @@
               <th>Producto</th>
               <th>Precio Und</th>
               <th>Cantidad</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +42,12 @@
               <td>{{sd.ProductoID.Nombre}}</td>
               <td>{{sd.ProductoID.Precio}}</td>
               <td>{{sd.Cantidad}}</td>
+
+              <td> <form action="{% url 'sale_delete_detail' VentaID=sd.VentaID.VentaID DetalleVentaID=sd.DetalleVentaID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Eliminar</button>
+              </form></td>
+
             </tr>
             {% endfor %}
           </tbody>
