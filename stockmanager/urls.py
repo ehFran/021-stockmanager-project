@@ -1,3 +1,39 @@
+"""
+Patrones de URL para la aplicación del Gestor de Inventario.
+
+Este módulo define los patrones de URL para la aplicación del Gestor de Inventario, asignando cada URL a la función de vista correspondiente.
+
+Patrones de URL:
+- '' (vacío): Renderiza la página principal del Gestor de Inventario.
+
+- 'productos/': Muestra una lista de productos.
+- 'producto_nuevo/': Permite la creación de un nuevo producto.
+- 'producto/<int:ProductoID>': Muestra y edita los detalles de un producto específico.
+- 'productos/<int:ProductoID>/delete': Elimina un producto específico.
+
+- 'proveedores/': Muestra una lista de proveedores.
+- 'proveedor_nuevo/': Permite la creación de un nuevo proveedor.
+- 'proveedor/<int:ProveedorID>': Muestra y edita los detalles de un proveedor específico.
+- 'proveedor/<int:ProveedorID>/delete': Elimina un proveedor específico.
+
+- 'clientes/': Muestra una lista de clientes.
+- 'cliente_nuevo/': Permite la creación de un nuevo cliente.
+- 'cliente/<int:ClienteID>': Muestra y edita los detalles de un cliente específico.
+- 'cliente/<int:ClienteID>/delete': Elimina un cliente específico.
+
+- 'compras/': Muestra una lista de compras.
+- 'compra_nueva/': Permite la creación de una nueva compra.
+- 'compra/<int:CompraID>': Muestra y edita los detalles de una compra específica.
+- 'compra/<int:CompraID>/delete': Elimina una compra específica.
+- 'compra/<int:CompraID>/delete_detail/<int:DetalleCompraID>/': Elimina un detalle específico de una compra.
+
+- 'ventas/': Muestra una lista de ventas.
+- 'venta_nueva/': Permite la creación de una nueva venta.
+- 'venta/<int:VentaID>': Muestra y edita los detalles de una venta específica.
+- 'venta/<int:VentaID>/delete': Elimina una venta específica.
+- 'venta/<int:VentaID>/delete_detail/<int:DetalleVentaID>/': Elimina un detalle específico de una venta.
+"""
+
 from django.urls import path
 from . import views
 

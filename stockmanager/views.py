@@ -8,23 +8,47 @@ from .forms import new_product, new_supplier, new_client, new_purchase, add_prod
 ###########################################################################################
 
 def stockmanager_index(response):
+    """
+    Renderiza la página principal del gestor de inventario.
 
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con la página principal.
+    """
     return render(response, 'index.html')
 
 ###########################################################################################
 #################################### RUTAS PRODUCTOS ######################################
 ###########################################################################################
 
-''' LISTAR TODOS LOS PRODUCTOS '''
-def products_index(response):
 
+def products_index(response):
+    """
+    Lista todos los productos.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con la lista de productos.
+    """
     products = Productos.objects.all()
 
     return render(response, 'productos/index.html', {'products': products})
 
-''' CREAR UN NUEVO PRODUCTO '''
-def product_new(response):
 
+def product_new(response):
+    """
+    Crea un nuevo producto.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de nuevo producto o redirige a la lista de productos.
+    """
     if response.method == 'GET':
         return render(response, 'productos/new.html', {
             'form': new_product()
@@ -39,9 +63,18 @@ def product_new(response):
             )
         return redirect('products_index')
     
-''' VER Y EDITAR UN PRODUCTO CONCRETO'''
-def product_get(response, ProductoID):
 
+def product_get(response, ProductoID):
+    """
+    Muestra y edita un producto específico.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - ProductoID: ID del producto a mostrar/editar.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de edición o redirige a la lista de productos.
+    """
     product = get_object_or_404(Productos, pk=ProductoID)
     
     if response.method == 'GET':
@@ -56,9 +89,18 @@ def product_get(response, ProductoID):
         form.save()
         return redirect('products_index')
     
-''' ELIMINAR UN PRODUCTO CONCRETO'''
-def product_delete(response, ProductoID):
 
+def product_delete(response, ProductoID):
+    """
+    Elimina un producto específico.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - ProductoID: ID del producto a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la lista de productos después de la eliminación.
+    """
     product = get_object_or_404(Productos, pk=ProductoID)
     
     if response.method == 'POST':
@@ -69,16 +111,32 @@ def product_delete(response, ProductoID):
 #################################### RUTAS PROVEEDORES ####################################
 ###########################################################################################
 
-''' LISTAR TODOS LOS PROVEEDORES '''
-def suppliers_index(response):
 
+def suppliers_index(response):
+    """
+    Lista todos los proveedores.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con la lista de proveedores.
+    """
     suppliers = Proveedores.objects.all()
 
     return render(response, 'proveedores/index.html', {'suppliers':suppliers})
+ 
 
-''' CREAR UN NUEVO PROVEEDOR '''
 def supplier_new(response):
-     
+    """
+    Crea un nuevo proveedor.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de nuevo proveedor o redirige a la lista de proveedores.
+    """
     if response.method == 'GET':
         return render(response, 'proveedores/new.html', {
             'form': new_supplier()
@@ -93,9 +151,18 @@ def supplier_new(response):
             )
         return redirect('suppliers_index')
 
-''' VER Y EDITAR UN PROVEEDOR CONCRETO '''
-def supplier_get(response, ProveedorID):
 
+def supplier_get(response, ProveedorID):
+    """
+    Muestra y edita un proveedor específico.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - ProveedorID: ID del proveedor a mostrar/editar.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de edición o redirige a la lista de proveedores.
+    """
     supplier = get_object_or_404(Proveedores, pk=ProveedorID)
     
     if response.method == 'GET':
@@ -110,9 +177,18 @@ def supplier_get(response, ProveedorID):
         form.save()
         return redirect('suppliers_index')
 
-''' ELIMINAR UN PROVEEDOR CONCRETO'''
-def supplier_delete(response, ProveedorID):
 
+def supplier_delete(response, ProveedorID):
+    """
+    Elimina un proveedor específico.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - ProveedorID: ID del proveedor a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la lista de proveedores después de la eliminación.
+    """
     supplier = get_object_or_404(Proveedores, pk=ProveedorID)
     
     if response.method == 'POST':
@@ -123,17 +199,32 @@ def supplier_delete(response, ProveedorID):
 ##################################### RUTAS CLIENTES ######################################
 ###########################################################################################
 
-''' LISTAR TODOS LOS CLIENTES '''
-def clients_index(response):
 
+def clients_index(response):
+    """
+    Lista todos los clientes.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con la lista de clientes.
+    """
     clients = Clientes.objects.all()
 
     return render(response, 'clientes/index.html', {'clients':clients})
 
 
-''' CREAR UN NUEVO CLIENTE '''
 def client_new(response):
-     
+    """
+    Crea un nuevo cliente.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de nuevo cliente o redirige a la lista de clientes.
+    """
     if response.method == 'GET':
         return render(response, 'clientes/new.html', {
             'form': new_client()
@@ -148,9 +239,18 @@ def client_new(response):
             )
         return redirect('clients_index')
 
-''' VER Y EDITAR UN CLIENTE CONCRETO '''
-def client_get(response, ClienteID):
 
+def client_get(response, ClienteID):
+    """
+    Muestra y edita un cliente específico.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - ClienteID: ID del cliente a mostrar/editar.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de edición o redirige a la lista de clientes.
+    """
     client = get_object_or_404(Clientes, pk=ClienteID)
     
     if response.method == 'GET':
@@ -165,9 +265,18 @@ def client_get(response, ClienteID):
         form.save()
         return redirect('clients_index')
     
-''' ELIMINAR UN CLIENTE CONCRETO'''
-def client_delete(response, ClienteID):
 
+def client_delete(response, ClienteID):
+    """
+    Elimina un cliente específico.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - ClienteID: ID del cliente a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la lista de clientes después de la eliminación.
+    """
     client = get_object_or_404(Clientes, pk=ClienteID)
     
     if response.method == 'POST':
@@ -178,18 +287,34 @@ def client_delete(response, ClienteID):
 ###################################### RUTAS COMPRAS ######################################
 ###########################################################################################
 
-''' LISTAR TODAS LAS COMPRAS A PROVEEDORES '''
-def purchases_index(response):
 
+def purchases_index(response):
+    """
+    Lista todas las compras a proveedores.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con la lista de compras a proveedores.
+    """
     purchases = Compras.objects.all()
 
     return render(response, 'compras/index.html', {
         'purchases':purchases,
         })
 
-''' CREAR UNA NUEVA COMPRA A PROVEEDOR '''
+
 def purchase_new(response):
-     
+    """
+    Crea una nueva compra a proveedor.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de nueva compra o redirige a la lista de compras.
+    """
     if response.method == 'GET':
         return render(response, 'compras/new.html', {
             'form': new_purchase()
@@ -209,13 +334,18 @@ def purchase_new(response):
         return redirect('purchases_index')
 
 
-''' EDITAR UNA COMPRA CONCRETA A PROVEEDOR '''
-def purchase_edit(response):
-    pass
 
-''' VER Y EDITAR UNA COMPRA CONCRETA EN DETALLE '''
 def purchase_get(response, CompraID):
+    """
+    Muestra y edita una compra a proveedor específica en detalle.
 
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - CompraID: ID de la compra a proveedor a mostrar/editar.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de edición detallada o redirige a la lista de compras.
+    """
     purchase = Compras.objects.get(pk=CompraID)
     purchase_details = DetallesCompras.objects.filter(CompraID=CompraID)
 
@@ -244,9 +374,18 @@ def purchase_get(response, CompraID):
         
         return redirect('purchase_get', CompraID)
     
-''' ELIMINAR UNA COMPRA CONCRETA'''
-def purchase_delete(response, CompraID):
 
+def purchase_delete(response, CompraID):
+    """
+    Elimina una compra a proveedor específica.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - CompraID: ID de la compra a proveedor a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la lista de compras a proveedores después de la eliminación.
+    """
     purchase = get_object_or_404(Compras, pk=CompraID)
     
     if response.method == 'POST':
@@ -265,9 +404,19 @@ def purchase_delete(response, CompraID):
         purchase.delete()
         return redirect('purchases_index')
 
-''' ELIMINAR UN REGISTRO DE UNA COMPRA'''
-def purchase_delete_detail(response, CompraID, DetalleCompraID):
 
+def purchase_delete_detail(response, CompraID, DetalleCompraID):
+    """
+    Elimina un registro de una compra a proveedor específica.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - CompraID: ID de la compra a proveedor.
+    - DetalleCompraID: ID del registro de detalle de compra a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la vista detallada de la compra a proveedor después de la eliminación.
+    """
     purchase_register = get_object_or_404(DetallesCompras, pk=DetalleCompraID)
     purchase = get_object_or_404(Compras, pk=CompraID)
     
@@ -284,17 +433,32 @@ def purchase_delete_detail(response, CompraID, DetalleCompraID):
 ###################################### RUTAS VENTAS #######################################
 ###########################################################################################
 
-''' LISTAR TODAS LAS VENTAS A CLIENTES '''
-def sales_index(response):
 
+def sales_index(response):
+    """
+    Lista todas las ventas a clientes.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con la lista de ventas a clientes.
+    """
     sales = Ventas.objects.all()
 
     return render(response, 'ventas/index.html', {'sales':sales})
 
 
-''' CREAR NUEVA VENTA '''
 def sale_new(response):
+    """
+    Crea una nueva venta.
 
+    Parameters:
+    - response: Objeto de respuesta de Django.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de nueva venta o redirige a la lista de ventas.
+    """
     if response.method == 'GET':
         return render(response, 'ventas/new.html', {
             'form': new_sale()
@@ -312,13 +476,17 @@ def sale_new(response):
         return redirect('sales_index')
 
 
-''' EDITAR UNA VENTA CONCRETA A UN CLIENTE  '''
-def sale_update(response):
-    pass
-
-''' VER UNA VENTA CONCRETA EN DETALLE '''
 def sale_get(response, VentaID):
+    """
+    Muestra y edita una venta concreta en detalle.
 
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - VentaID: ID de la venta a mostrar/editar.
+
+    Returns:
+    HttpResponse: Respuesta renderizada con el formulario de edición detallada o redirige a la lista de ventas.
+    """
     sale = Ventas.objects.get(pk=VentaID)
     sale_details = DetallesVentas.objects.filter(VentaID=VentaID)
 
@@ -348,9 +516,18 @@ def sale_get(response, VentaID):
         
         return redirect('sale_get', VentaID)
 
-''' ELIMINAR UNA VENTA'''
-def sale_delete(response, VentaID):
 
+def sale_delete(response, VentaID):
+    """
+    Elimina una venta concreta.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - VentaID: ID de la venta a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la lista de ventas después de la eliminación.
+    """
     sale = get_object_or_404(Ventas, pk=VentaID)
     
     if response.method == 'POST':
@@ -369,9 +546,19 @@ def sale_delete(response, VentaID):
         sale.delete()
         return redirect('sales_index')
 
-''' ELIMINAR UN REGISTRO DE UNA VENTA'''
-def sale_delete_detail(response, VentaID, DetalleVentaID):
 
+def sale_delete_detail(response, VentaID, DetalleVentaID):
+    """
+    Elimina un registro de una venta concreta.
+
+    Parameters:
+    - response: Objeto de respuesta de Django.
+    - VentaID: ID de la venta.
+    - DetalleVentaID: ID del registro de detalle de venta a eliminar.
+
+    Returns:
+    HttpResponse: Redirige a la vista detallada de la venta después de la eliminación.
+    """
     sale_register = get_object_or_404(DetallesVentas, pk=DetalleVentaID)
     sale = get_object_or_404(Ventas, pk=VentaID)
     
