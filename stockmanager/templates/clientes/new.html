@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<h1> Nuevo Cliente </h1>
+<section class="form-section">
+    <form method="POST" action="" enctype="multipart/form-data">
 
-<form method="POST" action="" enctype="multipart/form-data">
-{% csrf_token %}
+        <h1 class="titulo-form"> Nuevo Cliente </h1> <hr>
+        {% csrf_token %}
 
-{{form}}
+        {{form}}
 
-<button>Crear</button>
-
-</form>
-
+        <button class="btn btn-primary">Crear</button>
+    </form>
+</section>
 {% endblock %}

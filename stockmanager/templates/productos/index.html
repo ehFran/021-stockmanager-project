@@ -5,10 +5,10 @@
 {% block content %}
 
 <section class="sub-header">
-  <h1>PRODUCTOS</h1>
-  <a href="{% url 'product_new' %}"><button class="btn btn-primary"> + PRODUCTO </button></a>
+  <h1 class="titulo-form">Listado de productos</h1>
+  <a href="{% url 'product_new' %}"><button class="btn btn-primary">Añadir Producto</button></a>
 </section>
-
+<hr>
 
 <section class="section-cards">
     {% for product in products %}
@@ -18,12 +18,14 @@
      <div class="card-body">
        <h2 class="card-title">{{product.Nombre}}</h2>
        <p>{{product.Descripcion}}</p>
+       <p>Precio unitario: {{product.Precio}}€</p>
+       <p>Stock disponible: {{product.Stock }}</p>
        <div class="card-actions justify-end">
-        <a href="{% url 'product_get' product.ProductoID %}"><button class="btn btn-primary">Modificar</button></a>
+        <a href="{% url 'product_get' product.ProductoID %}"><button class="btn btn-info">Modificar</button></a>
 
         <form action="{% url 'product_delete' product.ProductoID %}" method="POST">
           {% csrf_token %}
-          <button class="btn btn-primary">Eliminar</button>
+          <button class="btn btn-error">Eliminar</button>
         </form>
 
        </div>

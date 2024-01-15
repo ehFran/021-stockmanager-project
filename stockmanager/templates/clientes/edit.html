@@ -2,15 +2,14 @@
 
 {% block content %}
 
-<h1> Editar Cliente - {{client.Nombre}}</h1> 
+<section class="form-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        <h1 class="titulo-form"> Editar Cliente - {{client.Nombre}}</h1> <hr>   
+        {% csrf_token %}
 
-<form method="POST" action="" enctype="multipart/form-data">
-{% csrf_token %}
+        {{form}}
 
-{{form}}
-
-<button>Actualizar</button>
-
-</form>
-
+        <button class="btn btn-primary">Actualizar</button>
+    </form>
+</section>
 {% endblock %}

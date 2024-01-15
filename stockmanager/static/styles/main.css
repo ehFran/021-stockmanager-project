@@ -31,8 +31,26 @@ main{
 /* ESTILOS DE FORMULARIOS */
 
 .form-section{
-    width: 80vw;
+    width: 60vw;
     margin: auto;
+    padding: 30px;
+}
+
+.form-section form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section form button{
+    align-self: flex-end;
+}
+
+.titulo-form{
+    font-size: 1.4rem;
+}
+
+hr{
+    margin-bottom: 10px !important;
 }
 
 form input{
@@ -45,13 +63,17 @@ form input{
     display: block;
 }
 
+.form-detail{
+    flex-direction: row !important;
+}
+
 
 /* ESTILOS SECCION TABLAS Y FORMS*/
 
 .section-table{
     width: 60vw;
     margin: auto;
-    margin-bottom: 50px;
+    padding: 50px;
 }
 
 .form-title{
@@ -171,7 +193,7 @@ form input{
 
 .mockup{
     height: 500px;
-    background-image: url('../images/mockup1.png');
+    background-image: url('../images/der1.png');
     background-size: cover;
 }
 
@@ -205,12 +227,21 @@ form input{
 
 .mockup2{
     height: 500px;
-    background-image: url('../images/mockup2.png');
+    background-image: url('../images/izq.png');
     background-size: cover;
 
+}
+
+.mockup3{
+    height: 500px;
+    background-image: url('../images/cen.png');
+    background-size: cover;
 }
 
 .dash{
     max-width: 80vw;
     margin: auto;
 }
+
+/* PRODUCTOS */
+

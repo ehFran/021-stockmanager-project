@@ -5,10 +5,10 @@
 {% block content %}
 
 <section class="sub-header">
-  <h1>PROVEEDORES</h1>  
-  <a href="{% url 'supplier_new' %}"><button class="btn btn-primary"> + PROVEEDOR </button></a>
+  <h1 class="titulo-form">Listado de Proveedores</h1>  
+  <a href="{% url 'supplier_new' %}"><button class="btn btn-primary"> Añadir Proveedor</button></a>
 </section>
-
+<hr>
 <section class="section-cards">
     {% for supplier in suppliers %}
 
@@ -18,11 +18,11 @@
        <h2 class="card-title">{{supplier.Nombre}}</h2>
        <p>{{supplier.Contacto}}</p>
        <div class="card-actions justify-end">
-          <a href="{% url 'supplier_get' supplier.ProveedorID %}"><button class="btn btn-primary">Modificar</button></a>
+          <a href="{% url 'supplier_get' supplier.ProveedorID %}"><button class="btn btn-info">Modificar</button></a>
 
           <form action="{% url 'supplier_delete' supplier.ProveedorID %}" method="POST">
             {% csrf_token %}
-            <button class="btn btn-primary">Eliminar</button>
+            <button class="btn btn-error">Eliminar</button>
           </form>
           
         </div>

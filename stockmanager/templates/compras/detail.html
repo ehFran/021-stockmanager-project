@@ -4,69 +4,68 @@
 
 {% block content %}
 
-<h1>COMPRAS</h1>
+<section class="form-section">
+  <h1 class="titulo-form">Compra a proveedores</h1><hr>
+  <section class="section-table">
+      <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Proveedor</th>
+                <th></th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>0000{{purchase.CompraID}}</th>
+                <td>{{purchase.FechaCompra}}</td>
+                <td>{{purchase.ProveedorID.Nombre}}</td>
+                <td></td>
+                <td>{{purchase.Total}}</td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Cantidad</th>
+                <th>Producto</th>
+                <th>Precio Unitario</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pd in purchase_details %}
+              <tr>
+                <th>0000{{pd.CompraID.CompraID}}</th>
+                <td>{{pd.Cantidad}}</td>
+                <td>{{pd.ProductoID.Nombre}}</td>
+                <td>{{pd.ProductoID.Precio}}</td>
 
-<section class="section-table">
-    <div class="overflow-x-auto">
-        <table class="table">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Fecha</th>
-              <th>Proveedor</th>
-              <th>Total</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>0000{{purchase.CompraID}}</th>
-              <td>{{purchase.FechaCompra}}</td>
-              <td>{{purchase.ProveedorID.Nombre}}</td>
-              <td>{{purchase.Total}}</td>
-            </tr>
-          </tbody>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Cantidad</th>
-              <th>Producto</th>
-              <th>Precio Unitario</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for pd in purchase_details %}
-            <tr>
-              <th>0000{{pd.CompraID.CompraID}}</th>
-              <td>{{pd.Cantidad}}</td>
-              <td>{{pd.ProductoID.Nombre}}</td>
-              <td>{{pd.ProductoID.Precio}}</td>
+                <td> <form action="{% url 'purchase_delete_detail' CompraID=pd.CompraID.CompraID DetalleCompraID=pd.DetalleCompraID %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-error">Eliminar</button>
+                </form></td>
 
-              <td> <form action="{% url 'purchase_delete_detail' CompraID=pd.CompraID.CompraID DetalleCompraID=pd.DetalleCompraID %}" method="POST">
-                {% csrf_token %}
-                <button class="btn btn-primary">Eliminar</button>
-              </form></td>
-
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
 
 </section>
 
-<h1 class="form-title"> Nueva Compra </h1>
-<section class="form-section-detail">
 
+  <section class="form-section">
+    <h1 class="titulo-form"> Nuevo detalle de compra </h1> <hr>
+      <form class="form-detail" method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
 
-  <form method="POST" action="" enctype="multipart/form-data">
-    {% csrf_token %}
+        {{form}}
 
-    {{form}}
-
-    <button class="btn btn-primary btn-crear">Crear</button>
-  </form>
+        <button class="btn btn-primary btn-crear">Añadir</button>
+      </form>
+  </section>
 </section>
-
 {% endblock %}

@@ -4,9 +4,10 @@
 
 {% block content %}
 
-<h1>VENTAS</h1>
+
 
 <section class="section-table">
+  <h1 class="titulo-form">Detalles de ventas</h1> <hr>
     <div class="overflow-x-auto">
         <table class="table">
           <!-- head -->
@@ -15,6 +16,7 @@
               <th></th>
               <th>Fecha</th>
               <th>Cliente</th>
+              <th></th>
               <th>Total</th>
             </tr>
           </thead>
@@ -23,6 +25,7 @@
               <th>0000{{sale.VentaID}}</th>
               <td>{{sale.FechaVenta}}</td>
               <td>{{sale.ClienteID.Nombre}}</td>
+              <td></td>
               <td>{{sale.Total}}</td>
             </tr>
           </tbody>
@@ -32,7 +35,7 @@
               <th>Producto</th>
               <th>Precio Und</th>
               <th>Cantidad</th>
-              <th>Eliminar</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -45,7 +48,7 @@
 
               <td> <form action="{% url 'sale_delete_detail' VentaID=sd.VentaID.VentaID DetalleVentaID=sd.DetalleVentaID %}" method="POST">
                 {% csrf_token %}
-                <button class="btn btn-primary">Eliminar</button>
+                <button class="btn btn-error">Eliminar</button>
               </form></td>
 
             </tr>
@@ -56,17 +59,17 @@
 
 </section>
 
-<h1 class="form-title"> Nueva Venta </h1>
-<section class="form-section-detail">
 
-
-  <form method="POST" action="" enctype="multipart/form-data">
+<section class="form-section">
+  <h1 class="titulo-form"> Agregar detalle </h1> <hr>
+  <form class="form-detail" method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
 
     {{form}}
 
-    <button class="btn btn-primary btn-crear">Crear</button>
+    <button class="btn btn-primary btn-crear">Añadir</button>
   </form>
+
 </section>
 
 

@@ -5,10 +5,10 @@
 {% block content %}
 
 <section class="sub-header">
-  <h1>CLIENTES</h1>  
-  <a href="{% url 'client_new' %}"><button class="btn btn-primary"> + CLINTE </button></a>
+  <h1 class="titulo-form">Listado de Clientes</h1>  
+  <a href="{% url 'client_new' %}"><button class="btn btn-primary">Añadir Cliente</button></a>
 </section>
-
+<hr>
 <section class="section-cards">
     {% for client in clients %}
 
@@ -18,11 +18,11 @@
        <h2 class="card-title">{{client.Nombre}}</h2>
        <p>{{client.Contacto}}</p>
        <div class="card-actions justify-end">
-         <a href="{% url 'client_get' client.ClienteID %}"><button class="btn btn-primary">Modificar</button></a>
+         <a href="{% url 'client_get' client.ClienteID %}"><button class="btn btn-info">Modificar</button></a>
        
         <form action="{% url 'client_delete' client.ClienteID %}" method="POST">
           {% csrf_token %}
-          <button class="btn btn-primary">Eliminar</button>
+          <button class="btn btn-error">Eliminar</button>
         </form>
         
         </div>

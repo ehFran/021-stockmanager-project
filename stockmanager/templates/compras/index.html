@@ -6,10 +6,10 @@
 
 
 <section class="sub-header">
-  <h1>COMPRAS</h1>   
+  <h1 class="titulo-form">Compras</h1>   
   <a href="{% url 'purchase_new' %}"><button class="btn btn-primary">Nueva Compra</button></a>
 </section>
-
+<hr>
 <section class="section-table">
     <div class="overflow-x-auto">
         <table class="table">
@@ -21,7 +21,7 @@
               <th>Proveedor</th>
               <th>Total</th>
               <th>Detalles</th>
-              <th>Eliminar</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -31,26 +31,16 @@
               <td>{{purchase.FechaCompra}}</td>
               <td>{{purchase.ProveedorID.Nombre}}</td>
               <td>{{purchase.Total}}</td>
-              <td><a href="{% url 'purchase_get' purchase.CompraID %}">Ver más</a></td>
+              <td><a href="{% url 'purchase_get' purchase.CompraID %}" class="link">Ver más</a></td>
 
               <td> <form action="{% url 'purchase_delete' purchase.CompraID %}" method="POST">
                 {% csrf_token %}
-                <button class="btn btn-primary">Eliminar</button>
+                <button class="btn btn-error">Eliminar</button>
               </form></td>
               
             </tr>
             {% endfor %}
           </tbody>
-          <!-- <tbody>
-            {% for pd in purchases_details %}
-            <tr>
-              <th>{{pd.CompraID.CompraID}}</th>
-              <td>{{pd.ProductoID.ProductoID}}</td>
-              <td>{{pd.ProductoID.Nombre}}</td>
-              <td>{{pd.ProductoID.Precio}}</td>
-            </tr>
-            {% endfor %}
-          </tbody> -->
         </table>
       </div>
 

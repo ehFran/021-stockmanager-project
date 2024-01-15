@@ -5,10 +5,10 @@
 {% block content %}
 
 <section class="sub-header">
-  <h1>Ventas</h1>    
+  <h1 class="titulo-form">Ventas</h1>    
   <a href="{% url 'sale_new' %}"><button class="btn btn-primary">Nueva Venta</button></a>
 </section>
-
+<hr>
 <section class="section-table">
     <div class="overflow-x-auto">
         <table class="table">
@@ -28,11 +28,11 @@
               <td>{{sale.FechaVenta}}</td>
               <td>{{sale.ClienteID.Nombre}}</td>
               <td>{{sale.Total}}</td>
-              <td><a href="{% url 'sale_get' sale.VentaID %}">Ver más</a></td>
+              <td><a class="link" href="{% url 'sale_get' sale.VentaID %}">Ver más</a></td>
 
               <td> <form action="{% url 'sale_delete' sale.VentaID %}" method="POST">
                 {% csrf_token %}
-                <button class="btn btn-primary">Eliminar</button>
+                <button class="btn btn-error">Eliminar</button>
               </form></td>
               
             </tr>

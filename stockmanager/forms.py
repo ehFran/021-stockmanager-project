@@ -47,7 +47,7 @@ class new_client(forms.ModelForm):
 
     Nombre = forms.CharField(label='Nombre:', max_length=200)
     Apellido = forms.CharField(label='Apellido:', max_length=200)
-    Direccion = forms.CharField(widget=forms.Textarea, label="Dirección:", required=False)
+    Direccion = forms.CharField(widget=forms.Textarea(attrs={'class': 'descripcion-form'}), label="Dirección:", required=False)
     CorreoElectronico = forms.EmailField(label='Mail:')
     Imagen = forms.ImageField(required=False)
     
@@ -66,7 +66,7 @@ class new_purchase(forms.ModelForm):
     proveedores = Proveedores.objects.all()
     opciones_proveedores = [(proveedor.ProveedorID, proveedor.Nombre) for proveedor in proveedores]
 
-    FechaCompra = forms.DateTimeField()
+    FechaCompra = forms.DateTimeField(widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}), input_formats=["%Y-%m-%d"])
     ProveedorID = forms.ChoiceField(choices=opciones_proveedores, widget=forms.Select(attrs={'class': 'form-control'}))
 
 #########################################
@@ -100,7 +100,7 @@ class new_sale(forms.ModelForm):
     clientes = Clientes.objects.all()
     opciones_clientes= [(cliente.ClienteID, cliente.Nombre) for cliente in clientes]
 
-    FechaVenta = forms.DateTimeField()
+    FechaVenta = forms.DateTimeField(widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}), input_formats=["%Y-%m-%d"])
     ClienteID = forms.ChoiceField(choices=opciones_clientes, widget=forms.Select(attrs={'class': 'form-control'})) 
 
 

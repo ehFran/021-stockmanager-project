@@ -2,14 +2,16 @@
 
 {% block content %}
 
+
+
 <section class="form-section">
-    
+    <h1 class="titulo-form">Crear un producto nuevo</h1><hr>
     <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
 
     {{form}}
 
-    <button>Crear</button>
+    <button class="btn btn-primary">Crear</button>
 
     </form>
 
